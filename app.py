@@ -2,7 +2,7 @@ import streamlit as st
 from gtts import gTTS
 import os
 
-st.title("🗣️ Text to Speech App")
+st.title("Text to Speech App by Raj ")
 
 text = st.text_area("Enter text to convert into speech:")
 
@@ -19,4 +19,5 @@ if st.button("Speak"):
         st.success("✅ Speech generated successfully!")
     else:
         st.warning("⚠️ Please enter some text.")
+
 
