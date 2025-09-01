@@ -1,11 +1,22 @@
-import pyttsx3
+import streamlit as st
+from gtts import gTTS
+import os
 
-engine = pyttsx3.init()
-engine.setProperty("rate", 170)     # speed
-engine.setProperty("volume", 1.0)   # volume (0.0 to 1.0)
+st.title("🗣️ Text to Speech App")
 
-# Take input from user
-text = input("Enter something to speak: ")
+text = st.text_area("Enter text to convert into speech:")
 
-engine.say(text)
-engine.runAndWait()
+if st.button("Speak"):
+    if text.strip() != "":
+        # Convert text to speech
+        tts = gTTS(text=text, lang="en")
+        tts.save("speech.mp3")
+
+        # Play in browser
+        audio_file = open("speech.mp3", "rb")
+        st.audio(audio_file.read(), format="audio/mp3")
+
+        st.success("✅ Speech generated successfully!")
+    else:
+        st.warning("⚠️ Please enter some text.")
+
