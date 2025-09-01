@@ -16,9 +16,10 @@ if st.button("Speak"):
         audio_file = open("speech.mp3", "rb")
         st.audio(audio_file.read(), format="audio/mp3")
 
-        st.success("Speech generated successfully!","",text)
+        st.success("Speech generated successfully!")
     else:
         st.warning("Please enter some text.")
+
 
 
 
