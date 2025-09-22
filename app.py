@@ -4,7 +4,7 @@ from deep_translator import GoogleTranslator
 from io import BytesIO
 
 st.set_page_config(page_title="Text to Speech & Translation", layout="centered")
-st.title("🌐 Text to Speech & Translation App by Raj")
+st.title("Text to Speech & Translation App by Raj")
 
 # Language selection
 input_lang = st.selectbox("Select Input Language:", ("English", "Hindi", "Tamil"))
@@ -32,7 +32,7 @@ def text_to_audio_bytes(text, lang_code):
 
 if st.button("Translate & Speak"):
     if not text.strip():
-        st.warning("⚠️ Please enter some text.")
+        st.warning(" Please enter some text.")
     else:
         try:
             src = lang_map[input_lang]
@@ -50,5 +50,6 @@ if st.button("Translate & Speak"):
             st.audio(audio_bytes.read(), format="audio/mp3")
             st.success(f"Speech generated successfully in {output_lang}!")
         except Exception as e:
-            st.error(f"❌ Error: {e}")
+            st.error(f" Error: {e}")
             st.caption("If you see an error, copy-paste the full error here so I can help debug.")
+
