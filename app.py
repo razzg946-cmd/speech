@@ -1,17 +1,22 @@
 import streamlit as st
 from gtts import gTTS
-import os
+from googletrans import Translator
 
 # Title
-st.title("🌐 Text to Speech App by Raj")
+st.title("🌐 Text to Speech & Translation App by Raj")
 
-# Language selection
-lang_option = st.selectbox(
-    "Select Language:",
+# Language selection for input and output
+input_lang = st.selectbox(
+    "Select Input Language:",
     ("English", "Hindi", "Tamil")
 )
 
-# Map language names to gTTS language codes
+output_lang = st.selectbox(
+    "Select Output Language (for speech):",
+    ("English", "Hindi", "Tamil")
+)
+
+# Map language names to codes
 lang_map = {
     "English": "en",
     "Hindi": "hi",
@@ -19,19 +24,31 @@ lang_map = {
 }
 
 # Text input
-text = st.text_area("Enter text to convert into speech:")
+text = st.text_area("Enter text to translate & speak:")
 
 # Button
-if st.button("Speak"):
+if st.button("Translate & Speak"):
     if text.strip() != "":
-        # Convert text to speech
-        tts = gTTS(text=text, lang=lang_map[lang_option])
-        tts.save("speech.mp3")
+        try:
+            # Translate text
+            translator = Translator()
+            translated = translator.translate(text, 
+                                              src=lang_map[input_lang], 
+                                              dest=lang_map[output_lang])
+            translated_text = translated.text
 
-        # Play in browser
-        audio_file = open("speech.mp3", "rb")
-        st.audio(audio_file.read(), format="audio/mp3")
+            st.write(f"**Translated Text ({output_lang}):** {translated_text}")
 
-        st.success(f"Speech generated successfully in {lang_option}!")
+            # Convert translated text to speech
+            tts = gTTS(text=translated_text, lang=lang_map[output_lang])
+            tts.save("speech.mp3")
+
+            # Play in browser
+            audio_file = open("speech.mp3", "rb")
+            st.audio(audio_file.read(), format="audio/mp3")
+
+            st.success(f"Speech generated successfully in {output_lang}!")
+        except Exception as e:
+            st.error(f"❌ Error: {e}")
     else:
         st.warning("⚠️ Please enter some text.")
