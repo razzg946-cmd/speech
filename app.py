@@ -26,7 +26,7 @@ lang_map = {
     "Hindi": "hi",
     "Tamil": "ta",
     "Thai": "th"
-}
+    }
 
 # -------------------------
 # Language Selection
@@ -83,7 +83,7 @@ def text_to_speech(text, lang_code):
 # -------------------------
 # Button
 # -------------------------
-if st.button("🚀 Translate & Speak"):
+if st.button(" Translate & Speak"):
 
     if not text.strip():
         st.warning("Please enter some text.")
