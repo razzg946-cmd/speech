@@ -15,7 +15,7 @@ st.set_page_config(
 # -------------------------
 # Title
 # -------------------------
-st.title("🎙️ Text to Speech & Translation App by Raj")
+st.title("🎙️ Text to Speech & Translation Demo by Raj")
 st.write("Translate text and convert it into speech.")
 
 # -------------------------
