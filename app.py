@@ -25,7 +25,9 @@ lang_map = {
     "English": "en",
     "Hindi": "hi",
     "Tamil": "ta",
-    "Thai": "th"
+    "Thai": "th",
+    "Odia": "or",
+    "Kannada": "kn"
     }
 
 # -------------------------
