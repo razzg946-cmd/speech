@@ -16,7 +16,7 @@ st.set_page_config(
 # -----------------------
 # Title
 # -----------------------
-st.title("🎙️ Rvoice - Text to Speech & Translation")
+st.title("🎙️ Rvoice - Text to Speech & Translation - Demo")
 st.write("Translate text and convert it into natural AI voice speech")
 
 # -----------------------
