@@ -20,7 +20,7 @@ st.title("🎙️ Rvoice - Text to Speech & Translation")
 st.write("Translate text and convert it into natural AI voice speech")
 
 # -----------------------
-# Language Map (NO DUPLICATES)
+# Language Map (UPDATED)
 # -----------------------
 lang_map = {
     "English": "en",
@@ -44,11 +44,15 @@ lang_map = {
     "Manipuri": "mni",
     "Mizo": "lus",
 
-    "Urdu": "ur"
+    "Urdu": "ur",
+
+    # 🌏 NEW ADDITIONS
+    "Thai": "th",
+    "Chinese (Mandarin)": "zh-CN"
 }
 
 # -----------------------
-# Voice Map
+# Voice Map (UPDATED)
 # -----------------------
 voice_map = {
     "English": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
@@ -59,15 +63,25 @@ voice_map = {
     "Malayalam": {"Male": "ml-IN-MidhunNeural", "Female": "ml-IN-SobhanaNeural"},
     "Marathi": {"Male": "mr-IN-ManoharNeural", "Female": "mr-IN-AarohiNeural"},
     "Gujarati": {"Male": "gu-IN-NiranjanNeural", "Female": "gu-IN-DhwaniNeural"},
-    "Punjabi": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
+    "Punjabi": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
     "Bengali": {"Male": "bn-IN-BashkarNeural", "Female": "bn-IN-TanishaaNeural"},
-    "Odia": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
-    "Assamese": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
-    "Nepali": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
-    "Kashmiri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
-    "Manipuri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
-    "Mizo": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
-    "Urdu": {"Male": "ur-PK-AsadNeural", "Female": "ur-PK-UzmaNeural"}
+    "Odia": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+    "Assamese": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+    "Nepali": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+    "Kashmiri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+    "Manipuri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+    "Mizo": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+    "Urdu": {"Male": "ur-PK-AsadNeural", "Female": "ur-PK-UzmaNeural"},
+
+    # 🌏 NEW VOICES
+    "Thai": {
+        "Male": "th-TH-NiwatNeural",
+        "Female": "th-TH-PremwadeeNeural"
+    },
+    "Chinese (Mandarin)": {
+        "Male": "zh-CN-YunxiNeural",
+        "Female": "zh-CN-XiaoxiaoNeural"
+    }
 }
 
 # -----------------------
