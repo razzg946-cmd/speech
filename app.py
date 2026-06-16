@@ -115,7 +115,7 @@ text = st.text_area("Enter Text", placeholder="Type something...")
 # -----------------------
 # Action Button
 # -----------------------
-if st.button("Translate & Speak 🎙️"):
+if st.button("Translate & Speak"):
 
     if not text.strip():
         st.warning("Please enter text first!")
@@ -149,7 +149,7 @@ if st.button("Translate & Speak 🎙️"):
                 mime="audio/mpeg"
             )
 
-            st.success("Done! Voice generated successfully 🎉")
+            st.success("Voice generated successfully 🎉")
 
         except Exception as e:
             st.error(f"Error: {e}")
@@ -158,4 +158,4 @@ if st.button("Translate & Speak 🎙️"):
 # Footer
 # -----------------------
 st.markdown("---")
-st.caption("Rvoice © Built with Streamlit + Google Translator + Edge TTS")
+st.caption("Rvoice © Founder & CEO - Raj Gupta")
