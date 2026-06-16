@@ -1,116 +1,143 @@
 import streamlit as st
-from gtts import gTTS
 from deep_translator import GoogleTranslator
 from io import BytesIO
+import edge_tts
+import asyncio
 
-# -------------------------
+# -----------------------
 # Page Config
-# -------------------------
+# -----------------------
 st.set_page_config(
-    page_title="Text to Speech & Translation",
+    page_title="Rvoice - Translate & Speak",
     page_icon="🎙️",
     layout="centered"
 )
 
-# -------------------------
+# -----------------------
 # Title
-# -------------------------
-st.title("🎙️ Text to Speech & Translation Demo by Raj")
-st.write("Translate text and convert it into speech.")
+# -----------------------
+st.title("🎙️ Rvoice - Text to Speech & Translation")
+st.write("Translate text and convert it into natural AI voice speech")
 
-# -------------------------
-# Languages
-# -------------------------
+# -----------------------
+# Language Map (NO DUPLICATES)
+# -----------------------
 lang_map = {
     "English": "en",
     "Hindi": "hi",
+
     "Tamil": "ta",
-    "Thai": "th",
+    "Telugu": "te",
+    "Kannada": "kn",
+    "Malayalam": "ml",
+
+    "Marathi": "mr",
+    "Gujarati": "gu",
+    "Punjabi": "pa",
+
+    "Bengali": "bn",
     "Odia": "or",
-    "Kannada": "kn"
-    }
+    "Assamese": "as",
 
-# -------------------------
-# Language Selection
-# -------------------------
-input_lang = st.selectbox(
-    "Select Input Language",
-    list(lang_map.keys())
-)
+    "Nepali": "ne",
+    "Kashmiri": "ks",
+    "Manipuri": "mni",
+    "Mizo": "lus",
 
-output_lang = st.selectbox(
-    "Select Output Language",
-    list(lang_map.keys())
-)
+    "Urdu": "ur"
+}
 
-# -------------------------
-# Text Input
-# -------------------------
-text = st.text_area(
-    "Enter Text",
-    placeholder="Type something here..."
-)
+# -----------------------
+# Voice Map
+# -----------------------
+voice_map = {
+    "English": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+    "Hindi": {"Male": "hi-IN-MadhurNeural", "Female": "hi-IN-SwaraNeural"},
+    "Tamil": {"Male": "ta-IN-ValluvarNeural", "Female": "ta-IN-PallaviNeural"},
+    "Telugu": {"Male": "te-IN-MohanNeural", "Female": "te-IN-ShrutiNeural"},
+    "Kannada": {"Male": "kn-IN-GaganNeural", "Female": "kn-IN-SapnaNeural"},
+    "Malayalam": {"Male": "ml-IN-MidhunNeural", "Female": "ml-IN-SobhanaNeural"},
+    "Marathi": {"Male": "mr-IN-ManoharNeural", "Female": "mr-IN-AarohiNeural"},
+    "Gujarati": {"Male": "gu-IN-NiranjanNeural", "Female": "gu-IN-DhwaniNeural"},
+    "Punjabi": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
+    "Bengali": {"Male": "bn-IN-BashkarNeural", "Female": "bn-IN-TanishaaNeural"},
+    "Odia": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
+    "Assamese": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
+    "Nepali": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
+    "Kashmiri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
+    "Manipuri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
+    "Mizo": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},  # fallback
+    "Urdu": {"Male": "ur-PK-AsadNeural", "Female": "ur-PK-UzmaNeural"}
+}
 
-# -------------------------
+# -----------------------
+# Safe Voice Getter
+# -----------------------
+def get_voice(lang, gender):
+    return voice_map.get(lang, voice_map["English"]).get(gender, "en-US-GuyNeural")
+
+# -----------------------
 # Translation Function
-# -------------------------
+# -----------------------
 def translate_text(text, src_lang, tgt_lang):
     if src_lang == tgt_lang:
         return text
 
-    translator = GoogleTranslator(
-        source=src_lang,
-        target=tgt_lang
-    )
-
+    translator = GoogleTranslator(source=src_lang, target=tgt_lang)
     return translator.translate(text)
 
-# -------------------------
-# Text to Speech Function
-# -------------------------
-def text_to_speech(text, lang_code):
-    audio_buffer = BytesIO()
+# -----------------------
+# TTS Function
+# -----------------------
+async def generate_audio(text, voice):
+    communicate = edge_tts.Communicate(text=text, voice=voice)
 
-    tts = gTTS(
-        text=text,
-        lang=lang_code,
-        slow=False
-    )
+    audio_data = b""
 
-    tts.write_to_fp(audio_buffer)
-    audio_buffer.seek(0)
+    async for chunk in communicate.stream():
+        if chunk["type"] == "audio":
+            audio_data += chunk["data"]
 
-    return audio_buffer
+    return BytesIO(audio_data)
 
-# -------------------------
-# Button
-# -------------------------
-if st.button(" Translate & Speak"):
+def text_to_speech(text, voice):
+    return asyncio.run(generate_audio(text, voice))
+
+# -----------------------
+# UI Inputs
+# -----------------------
+input_lang = st.selectbox("Input Language", list(lang_map.keys()))
+output_lang = st.selectbox("Output Language", list(lang_map.keys()))
+voice_gender = st.selectbox("Voice Type", ["Male", "Female"])
+
+text = st.text_area("Enter Text", placeholder="Type something...")
+
+# -----------------------
+# Action Button
+# -----------------------
+if st.button("Translate & Speak 🎙️"):
 
     if not text.strip():
-        st.warning("Please enter some text.")
+        st.warning("Please enter text first!")
+
     else:
         try:
             src_code = lang_map[input_lang]
             tgt_code = lang_map[output_lang]
 
             with st.spinner("Translating..."):
-                translated_text = translate_text(
-                    text,
-                    src_code,
-                    tgt_code
-                )
+                translated_text = translate_text(text, src_code, tgt_code)
 
             st.subheader("Translated Text")
             st.write(translated_text)
 
-            with st.spinner("Generating Speech..."):
-                audio_file = text_to_speech(
-                    translated_text,
-                    tgt_code
-                )
+            voice = get_voice(output_lang, voice_gender)
 
-            st.subheader("Audio")
+            with st.spinner("Generating Voice..."):
+                audio_file = text_to_speech(translated_text, voice)
+
+            st.subheader("Audio Output")
+
             st.audio(audio_file, format="audio/mp3")
 
             audio_file.seek(0)
@@ -118,19 +145,17 @@ if st.button(" Translate & Speak"):
             st.download_button(
                 label="⬇ Download MP3",
                 data=audio_file,
-                file_name="translated_speech.mp3",
+                file_name="rvoice_output.mp3",
                 mime="audio/mpeg"
             )
 
-            st.success(
-                f"Speech generated successfully in {output_lang}"
-            )
+            st.success("Done! Voice generated successfully 🎉")
 
         except Exception as e:
             st.error(f"Error: {e}")
 
-# -------------------------
+# -----------------------
 # Footer
-# -------------------------
+# -----------------------
 st.markdown("---")
-st.caption("Made with Streamlit + Google Translator + gTTS")
+st.caption("Rvoice © Built with Streamlit + Google Translator + Edge TTS")
