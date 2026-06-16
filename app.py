@@ -163,7 +163,7 @@ if st.button("Translate & Speak"):
                 mime="audio/mpeg"
             )
 
-            st.success("Voice generated successfully 🎉")
+            st.success("Voice generated successfully")
 
         except Exception as e:
             st.error(f"Error: {e}")
