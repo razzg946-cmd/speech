@@ -16,8 +16,8 @@ st.set_page_config(
 # -----------------------
 # Title
 # -----------------------
-st.title("🎙️ Rvoice - Text to Speech & Translation")
-st.write("Translate text and convert it into natural AI voice speech DEMO")
+st.title("🎙️ Rvoice - Text to Speech & Translation DEMO")
+st.write("Translate text and convert it into natural AI voice speech")
 
 # -----------------------
 # Language Map (UPDATED)
