@@ -43,8 +43,8 @@ lang_map = {
     "Kashmiri": "ks",
     "Manipuri": "mni",
     "Mizo": "lus",
-    "Rajasthani": "hi"
     "Urdu": "ur",
+    "Rajasthani": "hi",
 
     # 🌏 NEW ADDITIONS
     "Thai": "th",
