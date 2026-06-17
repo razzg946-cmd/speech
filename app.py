@@ -33,18 +33,12 @@ lang_map = {
 
     "Marathi": "mr",
     "Gujarati": "gu",
-    "Punjabi": "pa",
+   
 
     "Bengali": "bn",
-    "Odia": "or",
-    "Assamese": "as",
-
-    "Nepali": "ne",
-    "Kashmiri": "ks",
-    "Manipuri": "mni",
-    "Mizo": "lus",
+    "Odia": "or",   
     "Urdu": "ur",
-    "Rajasthani": "hi",
+  
 
     # 🌏 NEW ADDITIONS
     "Thai": "th",
@@ -63,17 +57,13 @@ voice_map = {
     "Malayalam": {"Male": "ml-IN-MidhunNeural", "Female": "ml-IN-SobhanaNeural"},
     "Marathi": {"Male": "mr-IN-ManoharNeural", "Female": "mr-IN-AarohiNeural"},
     "Gujarati": {"Male": "gu-IN-NiranjanNeural", "Female": "gu-IN-DhwaniNeural"},
-    "Punjabi": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+   
     "Bengali": {"Male": "bn-IN-BashkarNeural", "Female": "bn-IN-TanishaaNeural"},
     "Odia": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
-    "Assamese": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
-    "Nepali": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
-    "Kashmiri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
-    "Manipuri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
-    "Mizo": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
+   
+   
     "Urdu": {"Male": "ur-PK-AsadNeural", "Female": "ur-PK-UzmaNeural"},
-    "Rajasthani": { "Male": "hi-IN-MadhurNeural", "Female": "hi-IN-SwaraNeural"},
-
+    
     # 🌏 NEW VOICES
     "Thai": {
         "Male": "th-TH-NiwatNeural",
