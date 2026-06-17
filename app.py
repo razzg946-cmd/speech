@@ -172,4 +172,4 @@ if st.button("Translate & Speak"):
 # Footer
 # -----------------------
 st.markdown("---")
-st.caption("Rvoice © Founder & CEO - Raj Gupta")
+st.caption("Rvoice © Founder - Raj Gupta")
