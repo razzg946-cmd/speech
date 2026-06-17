@@ -43,7 +43,7 @@ lang_map = {
     "Kashmiri": "ks",
     "Manipuri": "mni",
     "Mizo": "lus",
-
+    "Rajasthani": "hi"
     "Urdu": "ur",
 
     # 🌏 NEW ADDITIONS
@@ -72,6 +72,7 @@ voice_map = {
     "Manipuri": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
     "Mizo": {"Male": "en-US-GuyNeural", "Female": "en-US-JennyNeural"},
     "Urdu": {"Male": "ur-PK-AsadNeural", "Female": "ur-PK-UzmaNeural"},
+    "Rajasthani": { "Male": "hi-IN-MadhurNeural", "Female": "hi-IN-SwaraNeural"},
 
     # 🌏 NEW VOICES
     "Thai": {
