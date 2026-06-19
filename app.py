@@ -3,6 +3,7 @@ from deep_translator import GoogleTranslator
 from io import BytesIO
 import edge_tts
 import asyncio
+import base64
 
 with open("Rlogo.png", "rb") as f:
     logo_data = base64.b64encode(f.read()).decode()
