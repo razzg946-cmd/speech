@@ -13,7 +13,7 @@ st.markdown(
     <div style="text-align:center;">
         <img src="data:image/png;base64,{logo_data}" width="140">
         <h1 style="color:#1E88E5; margin-top:10px;">
-             Rvoice
+        
         </h1>
         <p style="font-size:18px;">
             Translate text and convert it into natural AI voice speech
