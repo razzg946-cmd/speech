@@ -21,9 +21,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.title("🎙️ Rvoice - Text to Speech & Translation DEMO")
-st.write("Translate text and convert it into natural AI voice speech")
-
 # -----------------------
 # Language Map (UPDATED)
 # -----------------------
