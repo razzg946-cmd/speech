@@ -4,18 +4,23 @@ from io import BytesIO
 import edge_tts
 import asyncio
 
-# -----------------------
-# Page Config
-# -----------------------
-st.set_page_config(
-    page_title="Rvoice - Translate & Speak",
-    page_icon="🎙️",
-    layout="centered"
-)
+with open("Rlogo.png", "rb") as f:
+    logo_data = base64.b64encode(f.read()).decode()
 
-# -----------------------
-# Title
-# -----------------------
+st.markdown(
+    f"""
+    <div style="text-align:center;">
+        <img src="data:image/png;base64,{logo_data}" width="140">
+        <h1 style="color:#1E88E5; margin-top:10px;">
+            🎙️ Rvoice
+        </h1>
+        <p style="font-size:18px;">
+            Translate text and convert it into natural AI voice speech
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 st.title("🎙️ Rvoice - Text to Speech & Translation DEMO")
 st.write("Translate text and convert it into natural AI voice speech")
 
