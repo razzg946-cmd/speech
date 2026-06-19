@@ -5,3 +5,13 @@ deep-translator>=1.11.4
 streamlit
 deep-translator
 edge-tts
+
+streamlit
+deep-translator
+edge-tts
+
+gtts
+audio-recorder-streamlit
+SpeechRecognition
+
+
